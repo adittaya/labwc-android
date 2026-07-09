@@ -34,7 +34,7 @@ LabWC Android brings a **native Wayland desktop environment** to Android devices
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/labwc-android.git
+git clone https://github.com/adittaya/labwc-android.git
 cd labwc-android
 
 # Run the setup script
