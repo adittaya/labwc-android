@@ -1,0 +1,116 @@
+# tint2 config - caelestia-inspired panel
+# Panel settings
+panel_monitor = all
+panel_position = bottom center horizontal
+panel_layer = top
+panel_size = 100% 32
+panel_margin = 0 0
+panel_padding = 8 0 8
+panel_dock = 0
+panel_window_name = tint2
+
+# Autohide
+autohide = 0
+autohide_show_timeout = 0.3
+autohide_hide_timeout = 0.3
+autohide_height = 6
+strut_policy = follow_size
+
+# Taskbar
+taskbar_mode = single_desktop
+taskbar_padding = 4 4 4
+taskbar_background_id = 1
+taskbar_active_background_id = 2
+
+# Task
+task_text = 1
+task_icon = 1
+task_centered = 1
+task_maximum_size = 200 35
+task_padding = 6 3 6
+task_tooltip = 1
+task_active = 1
+task_iconified = 1
+
+task_active_background_id = 2
+task_active_font_color = #cdd6f4
+task_active_icon_color = #cdd6f4
+
+task_iconified_background_id = 1
+task_iconified_font_color = #6c7086
+task_iconified_icon_color = #6c7086
+
+task_font = CaskaydiaCove Nerd Font
+task_font_size = 12
+
+# System tray
+systray_padding = 8 4 8
+systray_sort = ascending
+systray_icon_size = 20
+systray_icon_asb = 100 0 0
+systray_background_id = 1
+
+# Launcher
+launcher_padding = 8 4 8
+launcher_background_id = 1
+launcher_icon_background_id = 0
+launcher_icon_size = 20
+launcher_icon_theme = Papirus
+
+launcher_item_app = /usr/share/applications/foot.desktop
+launcher_item_app = /usr/share/applications/org.gnome.Nautilus.desktop
+launcher_item_app = /usr/share/applications/firefox.desktop
+
+# Clock
+time1_format = %H:%M
+time2_format = %A %d %B %Y
+time1_timezone =
+time2_timezone =
+clock_font_color = #cdd6f4
+clock_padding = 8 4
+clock_background_id = 1
+clock_tooltip = %A %d %B %Y
+clock_lclick_command = gsimplecal
+clock_rclick_command = gsimplecal
+
+# Battery
+battery_font_color = #cdd6f4
+battery_padding = 8 4
+battery_background_id = 1
+battery_tooltip = %p%% (%t)
+battery_low_status = 20
+battery_low_cmd = notify-send "Battery Low"
+
+# Tooltip
+tooltip_show_timeout = 0.5
+tooltip_hide_timeout = 0.2
+tooltip_padding = 8 4
+tooltip_background_id = 3
+tooltip_font_color = #cdd6f4
+tooltip_font = CaskaydiaCove Nerd Font
+tooltip_font_size = 12
+
+# Backgrounds
+# Background 1 - Default
+rounded = 6
+border_width = 1
+border_sides = TBLR
+background_color = #1e1e2e 95
+border_color = #313244 60
+background_id = 1
+
+# Background 2 - Active
+rounded = 6
+border_width = 1
+border_sides = TBLR
+background_color = #313244 95
+border_color = #89b4fa 60
+background_id = 2
+
+# Background 3 - Tooltip
+rounded = 4
+border_width = 1
+border_sides = TBLR
+background_color = #1e1e2e 95
+border_color = #89b4fa 60
+background_id = 3

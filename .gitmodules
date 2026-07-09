@@ -1,0 +1,3 @@
+[submodule "labwc-android"]
+	path = labwc-android
+	url = https://github.com/Xtr126/labwc-android.git

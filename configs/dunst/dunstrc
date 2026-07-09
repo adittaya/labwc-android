@@ -1,0 +1,91 @@
+# dunst config - caelestia-inspired notifications
+[global]
+    monitor = 0
+    follow = mouse
+    
+    # Geometry
+    width = (300, 300)
+    height = (0, 300)
+    origin = top-right
+    offset = 16x16
+    scale = 0
+    notification_limit = 5
+    
+    # Progress bar
+    progress_bar = true
+    progress_bar_height = 10
+    progress_bar_frame_width = 1
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
+    
+    # Appearance
+    indicate_hidden = yes
+    transparency = 0
+    separator_height = 2
+    padding = 16
+    horizontal_padding = 16
+    text_icon_padding = 0
+    
+    # Frame
+    frame_width = 2
+    frame_color = #89b4fa
+    
+    # Gap
+    gap_size = 8
+    
+    # Separator
+    separator_color = auto
+    
+    # Sort
+    sort = yes
+    
+    # Mouse
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+    
+    # Idle
+    idle_threshold = 120
+    
+    # Text
+    ellipsize = middle
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+    show_age_threshold = 60
+    
+    # Icons
+    icon_position = left
+    min_icon_size = 32
+    max_icon_size = 64
+    
+    # History
+    sticky_history = yes
+    history_length = 100
+    
+    # Misc
+    browser = xdg-open
+    always_run_script = true
+    corner_radius = 8
+    mouse_close = mouse_right_click
+    mouse.dismiss = mouse_middle_click
+
+[urgency_low]
+    background = #1e1e2e
+    foreground = #cdd6f4
+    frame_color = #313244
+    timeout = 5
+
+[urgency_normal]
+    background = #1e1e2e
+    foreground = #cdd6f4
+    frame_color = #89b4fa
+    timeout = 10
+
+[urgency_critical]
+    background = #1e1e2e
+    foreground = #cdd6f4
+    frame_color = #f38ba8
+    timeout = 0
+    default_icon = dialog-warning

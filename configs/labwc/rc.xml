@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- labwc rc.xml - Main configuration -->
+<labwc_config>
+  <!-- Core settings -->
+  <core>
+    <decoration>server</decoration>
+    <gap>4</gap>
+    <gapLESS>0</gapLESS>
+    <resistance>20</resistance>
+    <adaptiveSync>no</adaptiveSync>
+  </core>
+  
+  <!-- Theme -->
+  <theme>
+    <name>caelestia-dark</name>
+    <font place="ActiveWindow">
+      <name>CaskaydiaCove Nerd Font</name>
+      <size>12</size>
+    </font>
+    <font place="InactiveWindow">
+      <name>CaskaydiaCove Nerd Font</name>
+      <size>12</size>
+    </font>
+    <font place="MenuHeader">
+      <name>CaskaydiaCove Nerd Font</name>
+      <size>12</size>
+    </font>
+    <font place="MenuItem">
+      <name>CaskaydiaCove Nerd Font</name>
+      <size>12</size>
+    </font>
+  </theme>
+  
+  <!-- Desktops -->
+  <desktops>
+    <names>
+      <name>1</name>
+      <name>2</name>
+      <name>3</name>
+      <name>4</name>
+      <name>5</name>
+    </names>
+    <popupTime>0</popupTime>
+  </desktops>
+  
+  <!-- Keyboard -->
+  <keyboard>
+    <keybind key="A-F2">
+      <action name="Execute">
+        <command>rofi -show drun</command>
+      </action>
+    </keybind>
+    <keybind key="W-Return">
+      <action name="Execute">
+        <command>foot</command>
+      </action>
+    </keybind>
+    <keybind key="A-F4">
+      <action name="Close"/>
+    </keybind>
+    <keybind key="A-Tab">
+      <action name="NextWindow"/>
+    </keybind>
+    <keybind key="W-1">
+      <action name="GoToDesktop" to="1"/>
+    </keybind>
+    <keybind key="W-2">
+      <action name="GoToDesktop" to="2"/>
+    </keybind>
+    <keybind key="W-3">
+      <action name="GoToDesktop" to="3"/>
+    </keybind>
+    <keybind key="W-4">
+      <action name="GoToDesktop" to="4"/>
+    </keybind>
+    <keybind key="W-5">
+      <action name="GoToDesktop" to="5"/>
+    </keybind>
+    <keybind key="W-f">
+      <action name="ToggleMaximize"/>
+    </keybind>
+    <keybind key="W-F11">
+      <action name="ToggleFullscreen"/>
+    </keybind>
+  </keyboard>
+  
+  <!-- Mouse -->
+  <mouse>
+    <context name="Root">
+      <mousebind button="Right" action="Press">
+        <action name="ShowMenu" menu="root-menu"/>
+      </mousebind>
+    </context>
+  </mouse>
+  
+  <!-- Menus -->
+  <menu>
+    <item label="Terminal">
+      <action name="Execute">
+        <command>foot</command>
+      </action>
+    </item>
+    <item label="Launcher">
+      <action name="Execute">
+        <command>rofi -show drun</command>
+      </action>
+    </item>
+    <separator/>
+    <item label="Exit">
+      <action name="Exit"/>
+    </item>
+  </menu>
+</labwc_config>

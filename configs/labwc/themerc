@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- labwc theme - caelestia-inspired dark theme -->
+<theme>
+  <name>caelestia-dark</name>
+  <author>Desktop Project</author>
+  
+  <!-- Window decorations -->
+  <decorations>
+    <titlebar>
+      <height>32</height>
+      <font>
+        <name>CaskaydiaCove Nerd Font</name>
+        <size>12</size>
+      </font>
+      <textColor>#cdd6f4</textColor>
+      <backgroundColor>#1e1e2e</backgroundColor>
+      <activeTextColor>#cdd6f4</activeTextColor>
+      <activeBackgroundColor>#313244</activeBackgroundColor>
+    </titlebar>
+    
+    <!-- Window borders -->
+    <border>
+      <width>2</width>
+      <color>#89b4fa</color>
+      <activeColor>#b4befe</activeColor>
+    </border>
+    
+    <!-- Rounded corners -->
+    <cornerRadius>8</cornerRadius>
+  </decorations>
+  
+  <!-- Window focus -->
+  <focus>
+    <followMouse>yes</followMouse>
+    <raiseOnFocus>yes</raiseOnFocus>
+    <delay>0</delay>
+  </focus>
+  
+  <!-- Window placement -->
+  <placement>
+    <policy>center</policy>
+    <centerPolicy>active-output</centerPolicy>
+  </placement>
+  
+  <!-- Workspaces -->
+  <desktops>
+    <names>
+      <name>1</name>
+      <name>2</name>
+      <name>3</name>
+      <name>4</name>
+      <name>5</name>
+    </names>
+    <popupTime>0</popupTime>
+  </desktops>
+  
+  <!-- Keyboard shortcuts -->
+  <keyboard>
+    <!-- Application launcher -->
+    <keybind key="A-F2">
+      <action name="Execute">
+        <command>rofi -show drun</command>
+      </action>
+    </keybind>
+    
+    <!-- Terminal -->
+    <keybind key="W-Return">
+      <action name="Execute">
+        <command>foot</command>
+      </action>
+    </keybind>
+    
+    <!-- Close window -->
+    <keybind key="A-F4">
+      <action name="Close"/>
+    </keybind>
+    
+    <!-- Window management -->
+    <keybind key="A-Tab">
+      <action name="NextWindow"/>
+    </keybind>
+    
+    <!-- Workspace switching -->
+    <keybind key="W-1">
+      <action name="GoToDesktop" to="1"/>
+    </keybind>
+    <keybind key="W-2">
+      <action name="GoToDesktop" to="2"/>
+    </keybind>
+    <keybind key="W-3">
+      <action name="GoToDesktop" to="3"/>
+    </keybind>
+    <keybind key="W-4">
+      <action name="GoToDesktop" to="4"/>
+    </keybind>
+    <keybind key="W-5">
+      <action name="GoToDesktop" to="5"/>
+    </keybind>
+    
+    <!-- Move window to workspace -->
+    <keybind key="W-S-1">
+      <action name="SendToDesktop" to="1"/>
+    </keybind>
+    <keybind key="W-S-2">
+      <action name="SendToDesktop" to="2"/>
+    </keybind>
+    <keybind key="W-S-3">
+      <action name="SendToDesktop" to="3"/>
+    </keybind>
+    <keybind key="W-S-4">
+      <action name="SendToDesktop" to="4"/>
+    </keybind>
+    <keybind key="W-S-5">
+      <action name="SendToDesktop" to="5"/>
+    </keybind>
+    
+    <!-- Window tiling -->
+    <keybind key="W-Left">
+      <action name="UnsetMaximize"/>
+      <action name="Unoccupy"/>
+      <action name="Move" x="0" y="0"/>
+      <action name="Resize" width="50%" height="100%"/>
+    </keybind>
+    <keybind key="W-Right">
+      <action name="UnsetMaximize"/>
+      <action name="Unoccupy"/>
+      <action name="Move" x="50%" y="0"/>
+      <action name="Resize" width="50%" height="100%"/>
+    </keybind>
+    <keybind key="W-Up">
+      <action name="UnsetMaximize"/>
+      <action name="Unoccupy"/>
+      <action name="Move" x="0" y="0"/>
+      <action name="Resize" width="100%" height="50%"/>
+    </keybind>
+    <keybind key="W-Down">
+      <action name="UnsetMaximize"/>
+      <action name="Unoccupy"/>
+      <action name="Move" x="0" y="50%"/>
+      <action name="Resize" width="100%" height="50%"/>
+    </keybind>
+    
+    <!-- Maximize -->
+    <keybind key="W-f">
+      <action name="ToggleMaximize"/>
+    </keybind>
+    
+    <!-- Fullscreen -->
+    <keybind key="W-F11">
+      <action name="ToggleFullscreen"/>
+    </keybind>
+  </keyboard>
+  
+  <!-- Mouse bindings -->
+  <mouse>
+    <!-- Desktop right-click menu -->
+    <context name="Root">
+      <mousebind button="Right" action="Press">
+        <action name="ShowMenu" menu="root-menu"/>
+      </mousebind>
+    </context>
+    
+    <!-- Window titlebar -->
+    <context name="Titlebar">
+      <mousebind button="Left" action="Press">
+        <action name="Focus"/>
+        <action name="Raise"/>
+      </mousebind>
+      <mousebind button="Left" action="Drag">
+        <action name="Move"/>
+      </mousebind>
+      <mousebind button="Right" action="Drag">
+        <action name="Resize"/>
+      </mousebind>
+    </context>
+    
+    <!-- Window frame -->
+    <context name="Frame">
+      <mousebind button="Left" action="Press">
+        <action name="Focus"/>
+        <action name="Raise"/>
+      </mousebind>
+    </context>
+  </mouse>
+  
+  <!-- Menus -->
+  <menus>
+    <menu id="root-menu">
+      <item label="Terminal">
+        <action name="Execute">
+          <command>foot</command>
+        </action>
+      </item>
+      <item label="Launcher">
+        <action name="Execute">
+          <command>rofi -show drun</command>
+        </action>
+      </item>
+      <item label="Wallpaper">
+        <action name="Execute">
+          <command>feh --bg-scale ~/Pictures/Wallpaper.jpg</command>
+        </action>
+      </item>
+      <item label="Settings">
+        <action name="Execute">
+          <command>lxappearance</command>
+        </action>
+      </item>
+      <separator/>
+      <item label="Exit">
+        <action name="Exit"/>
+      </item>
+    </menu>
+  </menus>
+</theme>

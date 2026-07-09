@@ -1,0 +1,108 @@
+/* rofi config - caelestia-inspired launcher */
+configuration {
+    modi: "drun,run,window,filebrowser";
+    show-icons: true;
+    icon-theme: "Papirus";
+    font: "CaskaydiaCove Nerd Font 14";
+    display-drun: " Apps";
+    display-run: " Run";
+    display-window: " Windows";
+    display-filebrowser: " Files";
+    drun-display-format: "{name}";
+    terminal: "foot";
+    window-format: "{w}  {c}  {t}";
+}
+
+* {
+    bg:     #1e1e2e;
+    bg-alt: #313244;
+    fg:     #cdd6f4;
+    fg-alt: #6c7086;
+    accent: #89b4fa;
+    urgent: #f38ba8;
+    
+    background-color: transparent;
+    text-color: @fg;
+    spacing: 0;
+}
+
+window {
+    width: 600px;
+    background-color: @bg;
+    border: 2px;
+    border-color: @accent;
+    border-radius: 12px;
+    padding: 20px;
+    location: center;
+    anchor: center;
+}
+
+inputbar {
+    padding: 12px 16px;
+    background-color: @bg-alt;
+    border-radius: 8px;
+    children: [prompt, entry];
+}
+
+prompt {
+    background-color: @accent;
+    text-color: @bg;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin: 0 8px 0 0;
+}
+
+entry {
+    padding: 8px;
+    background-color: transparent;
+    text-color: @fg;
+    placeholder: "Search...";
+    placeholder-color: @fg-alt;
+}
+
+listview {
+    lines: 8;
+    columns: 1;
+    padding: 16px 0 0 0;
+    scrollbar: false;
+}
+
+element {
+    padding: 12px 16px;
+    border-radius: 8px;
+    spacing: 12px;
+}
+
+element selected {
+    background-color: @bg-alt;
+    text-color: @accent;
+}
+
+element active {
+    text-color: @accent;
+}
+
+element urgent {
+    text-color: @urgent;
+}
+
+element-icon {
+    size: 32px;
+    vertical-align: 0.5;
+}
+
+element-text {
+    vertical-align: 0.5;
+    highlight: bold underline;
+}
+
+message {
+    padding: 12px 16px;
+    background-color: @bg-alt;
+    border-radius: 8px;
+    margin: 16px 0 0 0;
+}
+
+textbox {
+    text-color: @fg;
+}

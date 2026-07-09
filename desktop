@@ -1,0 +1,15 @@
+#!/bin/bash
+# desktop - Global command for labwc-android desktop environment
+# Install to /usr/local/bin/ for system-wide access
+
+PROJECT_DIR="$HOME/project"
+
+# Check if project directory exists
+if [ ! -d "$PROJECT_DIR" ]; then
+    echo "Error: Project directory not found at $PROJECT_DIR"
+    echo "Please run the setup scripts first."
+    exit 1
+fi
+
+# Execute the main desktop script
+exec "$PROJECT_DIR/scripts/desktop.sh" "$@"
