@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LabWC Android - Native Wayland Desktop Environment for Android. Run a full Linux desktop on your Android device with GPU acceleration, Wayland compositor, and termux-x11.">
+    <meta name="keywords" content="labwc android, wayland android, linux desktop android, termux desktop, wayland compositor android, GPU acceleration android, proot arch linux, termux-x11, virtual desktop android, linux on android">
+    <meta name="author" content="LabWC Android Project">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="LabWC Android - Native Wayland Desktop for Android">
+    <meta property="og:description" content="Run a full native Wayland Linux desktop on your Android device with GPU acceleration">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>LabWC Android - Native Wayland Desktop Environment for Android | Linux Desktop on Android</title>
+    <link rel="canonical" href="https://github.com/yourusername/labwc-android">
+    <style>
+        :root {
+            --bg: #0f0f1a;
+            --bg-card: #1a1a2e;
+            --bg-card-hover: #252540;
+            --fg: #cdd6f4;
+            --fg-dim: #a6adc8;
+            --accent: #89b4fa;
+            --accent2: #cba6f7;
+            --accent3: #a6e3a1;
+            --accent4: #f9e2af;
+            --accent5: #f38ba8;
+            --border: #313244;
+            --code-bg: #181825;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.7;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* Hero */
+        .hero {
+            padding: 80px 20px 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+            border-bottom: 1px solid var(--border);
+        }
+        .hero h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+        .hero p { font-size: 1.2em; color: var(--fg-dim); max-width: 700px; margin: 0 auto 30px; }
+        .hero-badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+        }
+        .badge-green { border-color: var(--accent3); color: var(--accent3); }
+        .badge-blue { border-color: var(--accent); color: var(--accent); }
+        .badge-purple { border-color: var(--accent2); color: var(--accent2); }
+
+        /* Navigation */
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(15,15,26,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 0;
+        }
+        nav .container { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+        nav a {
+            color: var(--fg-dim);
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        nav a:hover { color: var(--accent); }
+        nav .brand { color: var(--accent); font-weight: 700; font-size: 1.1em; margin-right: auto; }
+
+        /* Sections */
+        section { padding: 60px 0; }
+        section + section { border-top: 1px solid var(--border); }
+        h2 {
+            font-size: 1.9em;
+            margin-bottom: 12px;
+            color: var(--fg);
+        }
+        h3 { font-size: 1.3em; margin: 24px 0 12px; color: var(--accent); }
+        h4 { font-size: 1.1em; margin: 16px 0 8px; color: var(--accent2); }
+        p { margin-bottom: 16px; color: var(--fg-dim); }
+        ul, ol { margin: 12px 0 20px 24px; color: var(--fg-dim); }
+        li { margin-bottom: 8px; }
+
+        /* Cards */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 24px 0; }
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .card:hover { transform: translateY(-2px); border-color: var(--accent); }
+        .card h3 { margin-top: 0; }
+        .card-icon { font-size: 2em; margin-bottom: 12px; }
+
+        /* Code blocks */
+        pre {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 16px 0 24px;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        code {
+            font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', monospace;
+            color: var(--accent3);
+        }
+        pre code { color: var(--fg); }
+        .comment { color: #6c7086; }
+        .string { color: var(--accent3); }
+        .keyword { color: var(--accent2); }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 24px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: var(--code-bg);
+            color: var(--accent);
+            font-weight: 600;
+        }
+        tr:hover td { background: var(--bg-card-hover); }
+
+        /* Step indicators */
+        .step {
+            display: flex;
+            gap: 20px;
+            margin: 24px 0;
+            padding: 20px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        .step-num {
+            min-width: 48px;
+            height: 48px;
+            background: var(--accent);
+            color: var(--bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+        .step-content { flex: 1; }
+        .step-content h3 { margin-top: 0; }
+
+        /* CTA buttons */
+        .cta-group { display: flex; gap: 12px; flex-wrap: wrap; margin: 24px 0; }
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 1em;
+        }
+        .btn-primary { background: var(--accent); color: var(--bg); }
+        .btn-primary:hover { background: #b4d0fb; }
+        .btn-secondary { background: var(--bg-card); color: var(--fg); border: 1px solid var(--border); }
+        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* FAQ */
+        details {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        summary {
+            padding: 16px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--fg);
+            list-style: none;
+        }
+        summary::before { content: "▸ "; color: var(--accent); }
+        details[open] summary::before { content: "▾ "; }
+        details .faq-content { padding: 0 20px 16px; color: var(--fg-dim); }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--fg-dim);
+            font-size: 0.9em;
+        }
+        footer a { color: var(--accent); text-decoration: none; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8em; }
+            .grid { grid-template-columns: 1fr; }
+            nav .container { gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <h1>LabWC Android</h1>
+        <p>Native Wayland Desktop Environment for Android. Run a full Linux desktop with GPU acceleration, Wayland compositor, and zero-copy rendering — all on your phone or tablet.</p>
+        <div class="hero-badges">
+            <span class="badge badge-green">Native Wayland</span>
+            <span class="badge badge-blue">GPU Accelerated</span>
+            <span class="badge badge-purple">Arch Linux ARM</span>
+        </div>
+        <div class="cta-group" style="justify-content:center; margin-top:30px;">
+            <a href="https://github.com/yourusername/labwc-android" class="btn btn-primary">View on GitHub</a>
+            <a href="#quickstart" class="btn btn-secondary">Quick Start Guide</a>
+        </div>
+    </div>
+</section>
+
+<!-- Navigation -->
+<nav>
+    <div class="container">
+        <a href="#" class="brand">LabWC Android</a>
+        <a href="#features">Features</a>
+        <a href="#quickstart">Quick Start</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#commands">Commands</a>
+        <a href="#troubleshooting">Troubleshooting</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contributing">Contributing</a>
+    </div>
+</nav>
+
+<!-- Features -->
+<section id="features">
+    <div class="container">
+        <h2>Why LabWC Android?</h2>
+        <p>Unlike X11-based setups that suffer from latency and overhead, LabWC Android provides a native Wayland pipeline directly to your Android display hardware.</p>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>Zero-Copy GPU Rendering</h3>
+                <p>AHardwareBuffer integration with Android's SurfaceControl delivers frames directly to your screen without copy overhead.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎨</div>
+                <h3>Native Wayland Compositor</h3>
+                <p>labwc provides a full Wayland compositor that runs natively on Android, supporting modern desktop features.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🐧</div>
+                <h3>Arch Linux ARM</h3>
+                <p>Full Arch Linux ARM environment with thousands of packages available via pacman. LXQt desktop included.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔒</div>
+                <h3>Proot Sandboxed</h3>
+                <p>Containerized environment keeps your Android system clean while providing full Linux capabilities.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎵</div>
+                <h3>Audio Support</h3>
+                <p>PulseAudio integration provides seamless audio output through the Android audio stack.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🚀</div>
+                <h3>One-Click Setup</h3>
+                <p>Single command installation handles everything from package installation to desktop configuration.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Architecture -->
+<section id="architecture">
+    <div class="container">
+        <h2>Architecture Overview</h2>
+        <p>LabWC Android uses a multi-layer approach to deliver desktop Linux on Android:</p>
+
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+                <h3>Termux (Host Layer)</h3>
+                <p>The foundation running directly on Android. Handles audio (PulseAudio), display (termux-x11), and GPU (virgl) services.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+                <h3>Proot Container</h3>
+                <p>Arch Linux ARM container running via proot-distro. Sandboxed environment with full Linux capabilities.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+                <h3>Wayland Compositor</h3>
+                <p>labwc runs inside the container as the window manager, communicating with wlroots-android-bridge for Android display access.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+                <h3>Desktop Environment</h3>
+                <p>LXQt components (tint2, rofi, dunst, pcmanfm) provide a complete desktop experience.</p>
+            </div>
+        </div>
+
+        <h3>Data Flow</h3>
+<pre><code>┌─────────────────────────────────────────────────┐
+│                  Android Device                  │
+├─────────────────────────────────────────────────┤
+│  ┌─────────────┐  ┌─────────────┐               │
+│  │ Termux-X11  │  │ PulseAudio  │               │
+│  │   (Display) │  │   (Audio)   │               │
+│  └──────┬──────┘  └──────┬──────┘               │
+│         │                 │                      │
+│  ┌──────┴─────────────────┴──────┐               │
+│  │     VirGL (GPU Bridge)        │               │
+│  └──────────────┬────────────────┘               │
+│                 │                                │
+│  ┌──────────────┴────────────────┐               │
+│  │    Proot Arch Linux ARM       │               │
+│  │  ┌────────────────────────┐   │               │
+│  │  │   wlroots-android      │   │               │
+│  │  │   bridge               │   │               │
+│  │  └───────────┬────────────┘   │               │
+│  │              │                │               │
+│  │  ┌───────────┴────────────┐   │               │
+│  │  │      labwc             │   │               │
+│  │  │   (Wayland WM)        │   │               │
+│  │  └───────────┬────────────┘   │               │
+│  │              │                │               │
+│  │  ┌───────────┴────────────┐   │               │
+│  │  │  LXQt Desktop          │   │               │
+│  │  │  tint2 | rofi | dunst  │   │               │
+│  │  └────────────────────────┘   │               │
+│  └───────────────────────────────┘               │
+└─────────────────────────────────────────────────┘</code></pre>
+    </div>
+</section>
+
+<!-- Quick Start -->
+<section id="quickstart">
+    <div class="container">
+        <h2>Quick Start Guide</h2>
+        <p>Get up and running in under 10 minutes. This guide assumes you have Termux installed from F-Droid or the official site.</p>
+
+        <h3>Prerequisites</h3>
+        <ul>
+            <li>Android device with ARM64 processor (recommended 4GB+ RAM)</li>
+            <li>Termux app installed (v0.118.0+ from F-Droid recommended)</li>
+            <li>Termux-X11 app installed (for display output)</li>
+            <li>At least 3GB free storage space</li>
+            <li>Internet connection for package downloads</li>
+        </ul>
+
+        <h3>Step 1: Clone the Repository</h3>
+<pre><code><span class="comment"># Clone the project</span>
+<span class="keyword">git clone</span> https://github.com/yourusername/labwc-android.git
+<span class="keyword">cd</span> labwc-android</code></pre>
+
+        <h3>Step 2: Run the Setup Script</h3>
+<pre><code><span class="comment"># Run the complete setup</span>
+<span class="keyword">bash</span> setup.sh</code></pre>
+        <p>This will automatically:</p>
+        <ul>
+            <li>Install all required Termux packages</li>
+            <li>Create host-side shortcut commands</li>
+            <li>Install Arch Linux ARM proot container</li>
+            <li>Configure the desktop environment inside the container</li>
+        </ul>
+
+        <h3>Step 3: Start the Desktop</h3>
+<pre><code><span class="comment"># Start all host services (audio, display, GPU)</span>
+<span class="keyword">start-all</span>
+
+<span class="comment"># Enter the Arch Linux container</span>
+<span class="keyword">proot-distro login archlinuxarm --shared-tmp</span>
+
+<span class="comment"># Start the desktop (inside the container)</span>
+<span class="keyword">desktop start</span></code></pre>
+
+        <h3>Step 4: Open Termux-X11</h3>
+        <p>Open the Termux-X11 app on your Android device. You should see the full desktop environment running.</p>
+
+        <div class="cta-group">
+            <a href="https://github.com/yourusername/labwc-android" class="btn btn-primary">View Full Setup Guide</a>
+        </div>
+    </div>
+</section>
+
+<!-- Commands Reference -->
+<section id="commands">
+    <div class="container">
+        <h2>Commands Reference</h2>
+
+        <h3>Host-Side Commands (Termux)</h3>
+        <table>
+            <thead>
+                <tr><th>Command</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>start-all</code></td><td>Start all host services (audio, display, GPU)</td></tr>
+                <tr><td><code>start-audio</code></td><td>Start PulseAudio server</td></tr>
+                <tr><td><code>start-display</code></td><td>Start X11 display and picom compositor</td></tr>
+                <tr><td><code>start-graphics</code></td><td>Start VirGL GPU acceleration</td></tr>
+                <tr><td><code>start-wayland</code></td><td>Start Wayland compositor bridge</td></tr>
+                <tr><td><code>fix-desktop</code></td><td>Full environment recovery and process cleanup</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Container Commands (Arch Linux)</h3>
+        <table>
+            <thead>
+                <tr><th>Command</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>desktop start</code></td><td>Start the desktop environment</td></tr>
+                <tr><td><code>desktop stop</code></td><td>Stop the desktop environment</td></tr>
+                <tr><td><code>desktop restart</code></td><td>Restart the desktop environment</td></tr>
+                <tr><td><code>desktop status</code></td><td>Check desktop status</td></tr>
+            </tbody>
+        </table>
+
+        <h3>System Commands</h3>
+<pre><code><span class="comment"># Update Arch Linux container</span>
+<span class="keyword">pacman -Syu</span>
+
+<span class="comment"># Install new packages</span>
+<span class="keyword">pacman -S</span> &lt;package-name&gt;
+
+<span class="comment"># Install GUI applications</span>
+<span class="keyword">pacman -S</span> firefox gimp libreoffice
+
+<span class="comment"># Check running services</span>
+<span class="keyword">ps aux</span> | grep -E "labwc|tint2|dunst"
+
+<span class="comment"># View desktop logs</span>
+<span class="keyword">journalctl</span> -u desktop</code></pre>
+    </div>
+</section>
+
+<!-- Troubleshooting -->
+<section id="troubleshooting">
+    <div class="container">
+        <h2>Troubleshooting</h2>
+
+        <details>
+            <summary>Desktop doesn't start / black screen</summary>
+            <div class="faq-content">
+                <p><strong>Solution:</strong> Run the fix command and restart:</p>
+<pre><code><span class="comment"># On Termux host</span>
+fix-desktop
+<span class="comment"># Then re-enter container and start</span>
+proot-distro login archlinuxarm --shared-tmp
+desktop start</code></pre>
+            </div>
+        </details>
+
+        <details>
+            <summary>No audio output</summary>
+            <div class="faq-content">
+                <p><strong>Solution:</strong> Restart PulseAudio and verify it's running:</p>
+<pre><code><span class="comment"># On Termux host</span>
+pkill -9 -f pulseaudio
+pulseaudio --start --exit-idle-time=-1 --system=false \
+    --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" \
+    --disable-shm=yes
+
+<span class="comment"># Inside container, set environment</span>
+export PULSE_SERVER=127.0.0.1</code></pre>
+            </div>
+        </details>
+
+        <details>
+            <summary>GPU acceleration not working</summary>
+            <div class="faq-content">
+                <p><strong>Solution:</strong> Verify VirGL is running and check environment variables:</p>
+<pre><code><span class="comment"># On Termux host</span>
+ps aux | grep virgl
+
+<span class="comment"># Inside container, verify Mesa config</span>
+echo $GALLIUM_DRIVER  <span class="comment"># Should show: virpipe</span>
+echo $MESA_GL_VERSION_OVERRIDE  <span class="comment"># Should show: 4.0</span>
+glxinfo | grep "OpenGL renderer"</code></pre>
+            </div>
+        </details>
+
+        <details>
+            <summary>Package installation fails (pacman errors)</summary>
+            <div class="faq-content">
+                <p><strong>Solution:</strong> Fix pacman sandbox settings and reinitialize:</p>
+<pre><code><span class="comment"># Inside container</span>
+pacman-key --init
+pacman-key --populate archlinuxarm
+pacman -Syu</code></pre>
+            </div>
+        </details>
+
+        <details>
+            <summary>Proot installation fails</summary>
+            <div class="faq-content">
+                <p><strong>Solution:</strong> Clear proot state and reinstall:</p>
+<pre><code><span class="comment"># On Termux host</span>
+pkill -9 -f proot
+proot-distro remove archlinuxarm
+proot-distro install archlinuxarm</code></pre>
+            </div>
+        </details>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+    <div class="container">
+        <h2>Frequently Asked Questions</h2>
+
+        <details>
+            <summary>What Android versions are supported?</summary>
+            <div class="faq-content">
+                <p>LabWC Android works on Android 7.0 (Nougat) and above. For best performance, we recommend Android 10+ with at least 4GB RAM.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>Do I need root access?</summary>
+            <div class="faq-content">
+                <p>No. LabWC Android uses proot for containerization, which does not require root access on your Android device.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>Can I install GUI applications?</summary>
+            <div class="faq-content">
+                <p>Yes! Once inside the container, you can install any X11 or Wayland application via pacman:</p>
+<pre><code>pacman -S firefox gimp libreoffice vlc</code></pre>
+            </div>
+        </details>
+
+        <details>
+            <summary>How much storage does this use?</summary>
+            <div class="faq-content">
+                <p>The base installation uses approximately 2-3GB. With additional applications, budget 5-10GB depending on what you install.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>Is this the same as termux-x11 alone?</summary>
+            <div class="faq-content">
+                <p>No. Termux-X11 provides basic X11 forwarding. LabWC Android adds a full Wayland compositor with GPU acceleration, providing a true desktop experience.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>Can I use this for development?</summary>
+            <div class="faq-content">
+                <p>Absolutely. The Arch Linux environment includes gcc, make, cmake, and other development tools. You can install VS Code, Git, and all your dev tools.</p>
+            </div>
+        </details>
+    </div>
+</section>
+
+<!-- Contributing -->
+<section id="contributing">
+    <div class="container">
+        <h2>Contributing</h2>
+        <p>We welcome contributions! Here's how to get started:</p>
+
+        <ol>
+            <li>Fork the repository on GitHub</li>
+            <li>Clone your fork: <code>git clone https://github.com/yourusername/labwc-android.git</code></li>
+            <li>Create a feature branch: <code>git checkout -b feature/my-feature</code></li>
+            <li>Make your changes and test on a real device</li>
+            <li>Commit your changes: <code>git commit -m "Add my feature"</code></li>
+            <li>Push to your fork: <code>git push origin feature/my-feature</code></li>
+            <li>Open a Pull Request on GitHub</li>
+        </ol>
+
+        <h3>Development Setup</h3>
+<pre><code><span class="comment"># Clone the repo</span>
+<span class="keyword">git clone</span> https://github.com/yourusername/labwc-android.git
+<span class="keyword">cd</span> labwc-android
+
+<span class="comment"># Run the setup</span>
+<span class="keyword">bash</span> setup.sh
+
+<span class="comment"># Start the desktop</span>
+<span class="keyword">start-all</span>
+<span class="keyword">proot-distro login archlinuxarm --shared-tmp</span>
+<span class="keyword">desktop start</span></code></pre>
+
+        <h3>Reporting Issues</h3>
+        <p>Found a bug? Please open an issue on <a href="https://github.com/yourusername/labwc-android/issues">GitHub Issues</a> with:</p>
+        <ul>
+            <li>Your device model and Android version</li>
+            <li>Termux version</li>
+            <li>Steps to reproduce the issue</li>
+            <li>Error messages or logs</li>
+        </ul>
+    </div>
+</section>
+
+<!-- License -->
+<section id="license">
+    <div class="container">
+        <h2>License</h2>
+        <p>This project is licensed under the MIT License. See the <a href="https://github.com/yourusername/labwc-android/blob/main/LICENSE">LICENSE</a> file for details.</p>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <p>LabWC Android - Native Wayland Desktop for Android</p>
+        <p>Built with <a href="https://labwc.org">labwc</a>, <a href="https://archlinuxarm.org">Arch Linux ARM</a>, and <a href="https://termux.dev">Termux</a></p>
+        <p style="margin-top: 12px;">
+            <a href="https://github.com/yourusername/labwc-android">GitHub</a> ·
+            <a href="https://github.com/yourusername/labwc-android/issues">Issues</a> ·
+            <a href="https://github.com/yourusername/labwc-android/wiki">Wiki</a>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
